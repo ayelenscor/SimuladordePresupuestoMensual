@@ -31,7 +31,7 @@ console.log("Gastos ingresados:", gastosMensuales);}
 
 function calcularPresupuesto() {
   let totalGastos = sumar(gastosMensuales); 
-  let saldo = ingresosMensuales - totalGastos;
+  let saldo = salariosMensuales - totalGastos;
 
   if (saldo > 0) {
     alert(`¡Bien hecho! Te queda un saldo de $${saldo.toFixed(2)} este mes.`);
