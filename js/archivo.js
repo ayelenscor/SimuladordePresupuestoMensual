@@ -4,24 +4,25 @@ let gastosMensuales = [];
 
 // Función para validar que el número sea válido
 function pedirNumeroValido(mensaje) {
-  let valor;
-  do {
-    valor = parseInt (prompt(`${mensaje}`)); 
+  let entrada, numero;
 
-    if (valor === null) return null; // Si cancela, sale
+  while (true) {
+    entrada = prompt(mensaje);
 
-    let numero = Number(valor);
-
-    // Verifica que sea número y mayor o igual a 0, y que valor no sea cadena vacía
-    if (numero < 0 || valor === "" || String(numero) !== valor) {
-      alert("Por favor, ingrese un número válido mayor o igual a 0");
-      valor = undefined; // para repetir
-    } else {
-      valor = numero; // número válido
+    if (entrada === null) {
+      break; // Si el usuario presiona "Cancelar", salir del ciclo
     }
-  } while (valor === undefined);
 
-  return valor;
+    numero = parseInt(entrada);
+
+    if (numero === 0 || numero !== numero) {
+      alert("Por favor, ingrese un número válido mayor que 0");
+    } else {
+      return numero; // Número válido
+    }
+  }
+
+  return null; // Si se canceló, devolvemos null
 }
 
 
