@@ -50,7 +50,7 @@ function calcularPresupuesto() {
   } else if (saldo === 0) {
     alert("¡Has gastado exactamente lo que ingresaste! Cuidado con futuros gastos.");
   } else {
-    alert(`¡Atención! Tienes un déficit de $${Math.abs(saldo).toFixed(2)} este mes.`);
+    alert(`¡Atención! Tienes un déficit de $${saldo.toFixed(2)} este mes.`);
   }
 }
 
