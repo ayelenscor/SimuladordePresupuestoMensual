@@ -29,19 +29,29 @@ function pedirGastos() {
   
 console.log("Gastos ingresados:", gastosMensuales);}
 
+//  Función para sumar los gastos
+function sumar(array) {
+  let total = 0;
+  for (let i = 0; i < array.length; i++) {
+    total += array[i].monto;
+  }
+  return total;
+}
+
 function calcularPresupuesto() {
-  let totalGastos = sumar(gastosMensuales); 
+  let totalGastos = sumar(gastosMensuales);
   let saldo = salariosMensuales - totalGastos;
+
+  console.log("Total de gastos:", totalGastos);
+  console.log("Saldo restante:", saldo);
 
   if (saldo > 0) {
     alert(`¡Bien hecho! Te queda un saldo de $${saldo.toFixed(2)} este mes.`);
   } else if (saldo === 0) {
     alert("¡Has gastado exactamente lo que ingresaste! Cuidado con futuros gastos.");
   } else {
-    alert(`¡Atención! Tienes un déficit de $${saldo.toFixed(2)} este mes.`);
+    alert(`¡Atención! Tienes un déficit de $${Math.abs(saldo).toFixed(2)} este mes.`);
   }
-console.log("Total de gastos:", totalGastos);
-console.log("Saldo restante:", saldo);
 }
 
 // Ejecutar el simulador
