@@ -2,17 +2,28 @@ const gastosFijos = ["Alquiler", "Comida", "Transporte", "Ocio"];
 let salariosMensuales = 0;
 let gastosMensuales = [];
 
-// Función para validar que el número sea positivo y válido
+// Función para validar que el número sea válido
 function pedirNumeroValido(mensaje) {
   let valor;
   do {
-    valor = parseInt(prompt(`${mensaje}`));
-    if (isNaN(valor) || valor < 0) {
-      alert("Por favor, ingrese un número válido mayor o igual a 0.");
+    valor = parseInt (prompt(`${mensaje}`)); 
+
+    if (valor === null) return null; // Si cancela, sale
+
+    let numero = Number(valor);
+
+    // Verifica que sea número y mayor o igual a 0, y que valor no sea cadena vacía
+    if (numero < 0 || valor === "" || String(numero) !== valor) {
+      alert("Por favor, ingrese un número válido mayor o igual a 0");
+      valor = undefined; // para repetir
+    } else {
+      valor = numero; // número válido
     }
-  } while (isNaN(valor) || valor < 0);
+  } while (valor === undefined);
+
   return valor;
 }
+
 
 // Función de entrada de datos
 function pedirSalarios() {
@@ -30,10 +41,10 @@ function pedirGastos() {
 console.log("Gastos ingresados:", gastosMensuales);}
 
 //  Función para sumar los gastos
-function sumar(array) {
+function sumar(gastosMensuales) {
   let total = 0;
-  for (let i = 0; i < array.length; i++) {
-    total += array[i].monto;
+  for (let i = 0; i < gastosMensuales.length; i++) {
+    total += gastosMensuales[i].monto;
   }
   return total;
 }
