@@ -1,46 +1,51 @@
-// Declaración de variables y constantes
 const gastosFijos = ["Alquiler", "Comida", "Transporte", "Ocio"];
-let ingresosMensuales = 0;
+let salariosMensuales = 0;
 let gastosMensuales = [];
 
-// Función de entrada de datos
-function pedirIngresos() {
-  ingresosMensuales = parseFloat(prompt("Ingrese su ingreso mensual:"));
-  console.log("Ingreso mensual:", ingresosMensuales);
+// Función para validar que el número sea positivo y válido
+function pedirNumeroValido(mensaje) {
+  let valor;
+  do {
+    valor = parseInt(prompt(`${mensaje}`));
+    if (isNaN(valor) || valor < 0) {
+      alert("Por favor, ingrese un número válido mayor o igual a 0.");
+    }
+  } while (isNaN(valor) || valor < 0);
+  return valor;
 }
+
+// Función de entrada de datos
+function pedirSalarios() {
+  salariosMensuales = pedirNumeroValido("Ingrese su salario mensual:");
+  
+console.log("Salario mensual:", salariosMensuales);}
 
 // Función para ingresar los gastos
 function pedirGastos() {
   for (let i = 0; i < gastosFijos.length; i++) {
-    let gasto = parseFloat(prompt(`Ingrese el gasto en ${gastosFijos[i]}:`));
+    let gasto = pedirNumeroValido(`Ingrese el gasto en ${gastosFijos[i]}:`);
     gastosMensuales.push({ categoria: gastosFijos[i], monto: gasto });
   }
-  console.log("Gastos ingresados:", gastosMensuales);
-}
+  
+console.log("Gastos ingresados:", gastosMensuales);}
 
 // Función para procesar y mostrar resultado
 function calcularPresupuesto() {
-  let totalGastos = 0;
-
-  for (let i = 0; i < gastosMensuales.length; i++) {
-    totalGastos += gastosMensuales[i].monto;
-  }
-
-  let saldo = ingresosMensuales - totalGastos;
-
-  console.log("Total de gastos:", totalGastos);
-  console.log("Saldo restante:", saldo);
+  let totalGastos = gastosMensuales.reduce((suma, g) => suma + g.monto, 0);
+  let saldo = salariosMensuales - totalGastos;
 
   if (saldo > 0) {
     alert(`¡Bien hecho! Te queda un saldo de $${saldo.toFixed(2)} este mes.`);
   } else if (saldo === 0) {
     alert("¡Has gastado exactamente lo que ingresaste! Cuidado con futuros gastos.");
   } else {
-    alert(`¡Atención! Tienes un déficit de $${Math.abs(saldo).toFixed(2)} este mes.`);
+    alert(`¡Atención! Tienes un déficit de $${saldo.toFixed(2)} este mes.`);
   }
-}
 
-// Invocación de funciones
-pedirIngresos();
+console.log("Total de gastos:", totalGastos);
+console.log("Saldo restante:", saldo);}
+
+// Ejecutar el simulador
+pedirSalarios();
 pedirGastos();
 calcularPresupuesto();
