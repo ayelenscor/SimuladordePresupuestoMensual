@@ -6,25 +6,23 @@ let gastosMensuales = [];
 function pedirNumeroValido(mensaje) {
   let entrada, numero;
 
-  while (true) {
+  do {
     entrada = prompt(mensaje);
 
     if (entrada === null) {
-      break; // Si el usuario presiona "Cancelar", salir del ciclo
+      return null; // Si el usuario presiona "Cancelar", salir
     }
 
     numero = parseInt(entrada);
 
-    if (numero === 0 || numero !== numero) {
+    if (numero === 0 || numero !== numero) { 
       alert("Por favor, ingrese un número válido mayor que 0");
-    } else {
-      return numero; // Número válido
     }
-  }
 
-  return null; // Si se canceló, devolvemos null
+  } while (numero === 0 || numero !== numero);
+
+  return numero; // Número válido
 }
-
 
 // Función de entrada de datos
 function pedirSalarios() {
